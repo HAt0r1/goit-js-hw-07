@@ -6,8 +6,11 @@ function submitHandler(event) {
     email: event.target.elements.email.value.trim(),
     password: event.target.elements.password.value.trim(),
   };
-
-  console.log(data);
+  if (data.email === "" || data.password === "") {
+    console.log("Ooops. Your fields must be filled in");
+  } else {
+    console.log(data);
+  }
 }
 
 form.addEventListener("submit", submitHandler);
