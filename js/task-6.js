@@ -9,6 +9,7 @@ const addBtn = document.querySelector("[data-create]");
 const removeBtn = document.querySelector("[data-destroy]");
 
 function createBoxes(amount) {
+  destroyBoxes();
   for (let i = 0; i < amount; ++i) {
     const box = document.createElement("div");
     box.style.width = `${30 + i * 10}px`;
@@ -19,20 +20,19 @@ function createBoxes(amount) {
 }
 
 function destroyBoxes() {
-  if (boxContainer.children) {
-    boxContainer.innerHTML = "";
-  }
+  boxContainer.innerHTML = "";
 }
 
-function controlsHandler() {
+function handleCreateButtonClick() {
   const input = document.querySelector("input");
-  const amount = parseFloat(input.value);
+  const amount = parseInt(input.value);
   if (amount >= 1 && amount <= 100) {
     createBoxes(amount);
   } else {
     alert("Please pick in range 1 to 100");
   }
+  input.value = "";
 }
 
-addBtn.addEventListener("click", controlsHandler);
+addBtn.addEventListener("click", handleCreateButtonClick);
 removeBtn.addEventListener("click", destroyBoxes);
